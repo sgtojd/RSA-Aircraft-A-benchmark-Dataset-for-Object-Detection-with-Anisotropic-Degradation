@@ -7,14 +7,14 @@
 </p>
 
 <p align="center">
-  <em>Representative samples from RSA-Aircraft. The undegraded images shown in the paper figure are for visual comparison only and are not included in this public release.</em>
+  <em>Representative samples from RSA-Aircraft. If undegraded reference images are shown in the preview, they are only used for visual comparison and are not included in this public release.</em>
 </p>
 
 ---
 
 ## Release Scope
 
-This repository publicly releases the **simulated degraded images and oriented bounding-box annotations** used in Section 4.1 of our paper.
+This repository publicly releases the **simulated RSA-degraded images and oriented bounding-box annotations** used in Section 4.1 of our paper.
 
 **Released:**
 
@@ -31,22 +31,40 @@ This repository publicly releases the **simulated degraded images and oriented b
 
 ---
 
+## Why RSA Imaging?
+
+Rotating Synthetic Aperture (RSA) imaging is a promising optical architecture for high-resolution, high-orbit Earth observation. Instead of relying on a conventional large circular aperture, an RSA system rotates a high-aspect-ratio rectangular primary mirror to sequentially acquire high-resolution information across different orientations.
+
+This lightweight and compact design provides a potential solution for large-aperture space optical imaging. However, the rectangular rotating aperture also introduces a unique **anisotropic degradation** pattern. Unlike conventional isotropic blur, RSA degradation is direction-dependent and coupled with the mirror rotation angle, weakening contours, texture details, and target-background contrast.
+
+<p align="center">
+  <img src="assets/rsa_system.png" width="85%">
+</p>
+
+<p align="center">
+  <em>Schematic illustration of the RSA imaging process and the resulting anisotropic degradation.</em>
+</p>
+
+RSA-Aircraft is constructed to provide a dedicated benchmark for this emerging problem and to support the development of degradation-aware object detection methods for RSA imagery.
+
+---
+
 ## Highlights
 
 * **First benchmark for RSA aircraft detection**
   RSA-Aircraft focuses on object detection under anisotropic degradation introduced by Rotating Synthetic Aperture imaging.
 
 * **Physically motivated degradation**
-  The degraded images are generated using a full-link remote-sensing imaging simulation model, including RSA-specific anisotropic PSF degradation.
+  The degraded images are generated using a full-link remote-sensing imaging simulation model, including atmospheric effects, detector characteristics, electronic effects, and RSA-specific anisotropic PSF degradation.
 
-* **Large-scale and dense annotations**
-  The dataset contains **35,704 degraded images** and **477,352 aircraft instances**, with dense target distributions and many small aircraft.
+* **Large-scale and densely annotated**
+  The dataset contains **35,704 degraded images** and **477,352 aircraft instances**, covering dense aircraft parking areas and challenging small-object scenarios.
 
 * **Diverse global airport scenes**
-  The source scenes cover military and civilian airports from over 100 countries and regions, with different backgrounds, seasons, years, and weather conditions.
+  The source scenes cover military and civilian airports from over 100 countries and regions, with different backgrounds, years, seasons, and weather conditions.
 
 * **Standard oriented detection format**
-  All labels follow the DOTA-style oriented bounding-box format, making the dataset compatible with common remote-sensing detection toolboxes such as MMRotate.
+  All aircraft instances are annotated with oriented bounding boxes in DOTA-style format, making the dataset compatible with common remote-sensing detection toolboxes such as MMRotate.
 
 ---
 
@@ -65,7 +83,7 @@ This repository publicly releases the **simulated degraded images and oriented b
 | Spatial resolution  | Approximately 1.5–3.0 m                      |
 | Training set        | 28,620 images                                |
 | Test set            | 7,084 images                                 |
-| Split strategy      | Non-overlapping geographical locations       |
+| Split strategy      | Scene-level split before patch cropping      |
 | Public release      | Degraded images and detection labels only    |
 
 <p align="center">
@@ -90,7 +108,7 @@ x1 y1 x2 y2 x3 y3 x4 y4 class_name difficult
 
 where `(x1, y1), ..., (x4, y4)` denote the four vertices of the oriented bounding box.
 
-Please use the official train/test split for fair comparison. The split is performed at the level of original large airport scenes before patch cropping: the airport-scale large images used for testing do not appear in the training set. After the split, each large image is cropped into 1024 × 1024 patches with a certain overlap to preserve complete aircraft targets near patch boundaries. Therefore, overlap may exist among cropped patches from the same large image, but no original large airport scene is shared between the training and test sets.
+Please use the official train/test split for fair comparison. The split is conducted before patch cropping at the original large-airport-scene level: the large airport scenes used for testing are excluded from the training set. After the split, each large image is cropped into 1024 × 1024 patches with a certain overlap to preserve complete aircraft targets near patch boundaries. Therefore, overlap may exist among cropped patches from the same large image, but no original large airport scene is shared between the training and test sets.
 
 ---
 
