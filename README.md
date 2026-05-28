@@ -116,8 +116,10 @@ Please use the official train/test split for fair comparison. The split is condu
 
 The dataset is available for academic research only.
 
-* Baidu Netdisk: coming soon
-* Google Drive: coming soon
+* Baidu Netdisk: [download link](https://pan.baidu.com/s/1h6IMuHmxP51BFFOpAkNwXg)  
+  Extraction code: `kntz`
+
+The public release contains simulated RSA-degraded images and DOTA-style oriented bounding-box annotations only. The undegraded reference images, restoration ground truth, raw source imagery, and semi-physical experimental data are not included.
 
 ---
 
