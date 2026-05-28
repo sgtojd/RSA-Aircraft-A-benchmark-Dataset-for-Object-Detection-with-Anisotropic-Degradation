@@ -3,7 +3,7 @@
 **RSA-Aircraft** is a large-scale benchmark dataset for aircraft object detection in **Rotating Synthetic Aperture (RSA)** imagery. It is designed for studying robust oriented object detection under **RSA-specific anisotropic degradation**, where aircraft contours, textures, and target-background contrast are directionally degraded by the rotating rectangular aperture.
 
 <p align="center">
-  <img src="assets/rsa_aircraft_preview.png" width="95%">
+  <img src="assets/rsa_aircraft_preview.png" width="75%">
 </p>
 
 <p align="center">
